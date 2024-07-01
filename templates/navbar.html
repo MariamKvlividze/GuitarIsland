@@ -1,0 +1,84 @@
+<nav class="navbar bg-body-tertiary">
+    <link rel="stylesheet" href="/static/styles.css">
+  <div class="container-fluid"  >
+      <a class="navbar-brand" href="https://tbc.ge/">
+      <img src="https://thepaypers.com/Images/tbc-bank-logo.png" width="70" height="60" class="logo" alt="" style="padding-bottom: 0px; margin-bottom: 0px;">
+    </a>
+    <a class="navbar-brand" href="/">
+      <img src="/static/images/Guitar Island.png" width="170" height="60" class="logo" alt="" style="padding-bottom: 0px; margin-bottom: 0px; margin-left: 58px;">
+    </a>
+      <ul class="nav justify-content-end">
+          {% if current_user.is_authenticated %}
+          <li class="nav-item" >
+            <a class="nav-link" href="/logout" style="color: black; margin-top: 10px; font-family:Verdana, Geneva, Tahoma, sans-serif">Log Out</a>
+           </li>
+          <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" style="margin-top: 5px; color: black; border-color: #F8F9FA; background-color: #F8F9FA;">
+              <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" width="40" height="40" class="logo" alt="" style="padding-bottom: 0px; margin-bottom: 0px;">
+          </button>
+          <ul class="dropdown-menu dropdown-menu-lg-end" style="border-width: 1.5px; border-color: black;  background-color: #F8F9FA;">
+            <li style=" margin-left: 15px; margin-right: 20px; font-size: 18px; color:  black;">@{{ current_user.username }}</li>
+          </ul>
+          {% else %}
+          <li class="nav-item" >
+            <a class="nav-link" href="/login" style="color: black; font-family:Verdana, Geneva, Tahoma, sans-serif">Log In</a>
+           </li>
+           <li class="nav-item">
+           <a class="nav-link" href="/register" style="color: black; font-family:Verdana, Geneva, Tahoma, sans-serif">Sign Up</a>
+           </li>
+          {% endif %}
+      </ul>
+  </div>
+</nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-light" style="margin-top:0%; margin-bottom:0%; padding-bottom: 1px;">
+        <div class="container-fluid" style="background-color: #C8C6D7; color: #fff; margin-top: 0px; padding-top:10px; padding-bottom:10px;" >
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/"style="color: black; font-family:Verdana, Geneva, Tahoma, sans-serif">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about_us"style="color: black; font-family:Verdana, Geneva, Tahoma, sans-serif;">About Us</a>
+                    </li>
+           <li class="nav-item dropdown">
+          <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="margin-top: 1px; font-family:Verdana, Geneva, Tahoma, sans-serif; color: black; border-color: #C8C6D7; background-color: #C8C6D7;">
+                Products
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark" style="border-width: 1.5px; border-color: black; background-color: #F8F9FA;">
+              <li><a class="dropdown-item" href="/products/1" style="  font-size: 18px; color:  black;">Electric Guitar</a></li>
+              <li><a class="dropdown-item" href="/products/2" style=" font-size: 18px; margin-top: 6px;color: black; ">Acoustic Guitar</a></li>
+              <li><a class="dropdown-item" href="/products/3" style=" font-size: 18px; margin-top: 6px; color:black; ">Bass-Guitar</a></li>
+              <li><a class="dropdown-item" href="/products/4" style=" font-size: 18px; margin-top: 6px;color: black; ">Electric-Acoustic Guitar</a></li>
+
+          </ul>
+        </li>
+          {% if current_user.role == "Admin" %}
+                    <li class="nav-item dropdown">
+                        <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="margin-top: 1px; font-family:Verdana, Geneva, Tahoma, sans-serif; color: black; border-color: #C8C6D7; background-color: #C8C6D7;">
+                            Admin tabs
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark" style="border-width: 1.5px; border-color: black; background-color: #F8F9FA;">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/add_product" style="color: black; font-family:Verdana, Geneva, Tahoma, sans-serif; margin-left: 10px;">Add Product</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/add_offer" style="color: black; font-family:Verdana, Geneva, Tahoma, sans-serif; margin-left:10px;">Add Offer</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" id="searchInput"  type="search" placeholder="Product Name" aria-label="Search">
+                <a class="btn btn-primary"  id="searchButton"  style="background-color: #C8C6D7; color: #5F4B66; border-color: #5F4B66;" type="submit">Search</a>
+            </form>
+        </div>
+    </nav>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

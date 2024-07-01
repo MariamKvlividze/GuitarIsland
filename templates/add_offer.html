@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-3 p-3">
+
+<form class="mt-5"style="margin-bottom: 50px" method="post", enctype="multipart/form-data">
+    <h2 style="color: #5F4B66;">Add Offer</h2>
+    <br>
+    {{ form.hidden_tag() }}
+    {{ form.name.label.text }}
+    {{ form.name(class="form-control mb-3 mt-2", placeholder=form.name.label.text) }}
+    {{ form.text.label.text }}
+    {{ form.text(class="form-control mb-3 mt-2", placeholder=form.text.label.text) }}
+    {{ form.price.label.text }}
+    {{ form.price(class="form-control mb-3 mt-2", placeholder=form.price.label.text) }}
+    {{ form.image_url.label.text }}
+    {{ form.image_url(class="form-control mb-3 mt-2", placeholder=form.image_url.label.text) }}
+    {{ form.image.label.text }}
+    {{ form.image() }}
+    {{ form.submit(class="btn btn-primary mb-3 mt-2") }}
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="carousel slide" id="carouselExample" style="margin-top: 7px;">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="static/images/Guitar Island 1.png" class="d-block w-100"   alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="static/images/Guitar Island 2.png "class="d-block w-100 h-100"alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="static/images/Guitar Island 3.png" class="d-block w-100 h-100px" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+<h3 style="padding-left: 42%; padding-bottom: 5px; padding-top: 5px; margin-top: 20px; margin-bottom: 20px;  border-width: 2px; border-color:#5F4B66; background-color:#C8C6D7 ">Our Best Products</h3>
+
+    <div class="carousel slide" id="carouselExample" style="margin-top: 7px;">
+        <div class="carousel-inner">
+ <div class="container-fluid py-2" >
+    <div class="card-container" style="margin-bottom: 0px;">
+        <div class="row justify-content-center">
+            {% for product in products %}
+            <div class="col-lg-2 col-md-4 col-sm-6 mb-4" >
+                <div class="card">
+                    <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.text }}</p>
+                        <h5 class="card-text">{{ product.price }}</h5>
+                        <a href="/product/{{ product.id }}" class="btn btn-primary" style="margin-top: 5px; background-color: #5F4B66;">Shop now</a>
+                        {% if current_user.role == "Admin" %}
+                        <a href="/edit_product/{{ product.id }}" class="btn btn-primary" style="margin-top: 5px; background-color: #5F4B66;">Edit product</a>
+                        <a href="/delete_product/{{ product.id }}" class="btn btn-primary" style="margin-top: 5px;background-color: #5F4B66;">Delete Product</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+ </div>
+</div>
+    </div>
+
+<div class="jumbotron" style="background-color: #5F4B66; color: white; padding: 60px; margin-top: 0px; margin-bottom: 0px;">
+    <div class="container">
+        <h2 class="display-4">Find the perfect guitar for you.</h2>
+        <h5 class="display-4">-Guitar Island</h5>
+    </div>
+</div>
+
+<h3 style="padding-left: 43.5%; padding-bottom: 5px; padding-top: 5px; margin-top: 20px; margin-bottom: 20px;  border-width: 2px; border-color:#5F4B66; background-color:#C8C6D7">Offers & Sales</h3>
+<div class="container mt-4">
+   <div class="row justify-content-center">
+            {% for offer in offers %}
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ offer.image_url }}" class="card-img-top" alt="{{ offer.name }}">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ offer.name }}</h4>
+                        <h3 style="color: #5F4B66;" class="card-text">{{ offer.text }}</h3>
+                        <h4 class="card-text">{{ offer.price }}</h4>
+                        <a href="/offer/{{ offer.id }}" class="btn btn-primary" style="margin-top: 5px; background-color: #5F4B66;">Buy Now</a>
+                        {% if current_user.role == "Admin" %}
+                        <a href="/edit_offer/{{ offer.id }}" class="btn btn-primary"style="margin-top: 5px; background-color: #5F4B66;">Edit Offer</a>
+                        <a href="/delete_offer/{{ offer.id }}" class="btn btn-primary" style="margin-top: 5px;background-color: #5F4B66;">Delete Offer</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

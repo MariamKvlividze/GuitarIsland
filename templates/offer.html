@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content%}
+  <div class="container" style="margin-top: 50px;">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="{{ offer['image_url'] }}" class="img-fluid" style="height: 500px; width: 500px" alt="Guitar">
+        </div>
+          <div class="col-md-6">
+          <h1 style="font-size: 2rem; margin-bottom: 20px;">{{ offer['name'] }}</h1>
+          <p style="font-size: 1.5rem; color: #391E39; margin-bottom: 20px;">{{ offer['price'] }}</p>
+          <p style="margin-bottom: 20px;">{{ offer['text'] }}</p>
+          <button class="btn btn-primary btn-lg" style="background-color: #391E39; border-color: #391E39; color: white;">Buy Now</button>
+        </div>
+      </div>
+      </div>
+{% endblock %}

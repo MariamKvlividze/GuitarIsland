@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card-container" style="margin-top: 50px">
+  <div class="row justify-content-center">
+      {% for category in categories %}
+      <h1>{{ category['name'] }}</h1>
+      {% endfor %}
+      {% for product in products %}
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4" >
+                <div class="card">
+                    <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.text }}</p>
+                        <h5 class="card-text">{{ product.price }}</h5>
+                        <a href="/product/{{ product.id }}" class="btn btn-primary" style="background-color: #5F4B66;">Buy Now</a>
+                        {% if current_user.role == "Admin" %}
+                        <a href="/edit_product/{{ product.id }}" class="btn btn-primary" style="margin-top: 5px; background-color: #5F4B66;">Edit product</a>
+                        <a href="/delete_product/{{ product.id }}" class="btn btn-primary" style="margin-top: 5px;background-color: #5F4B66;">Delete Product</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

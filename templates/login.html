@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-3 p-3" >
+
+<form class="mt-5" style="margin-bottom: 50px; margin-left: 250px; margin-right: 250px;" method="post", enctype="multipart/form-data">
+    <h1 style="color: #5F4B66;">Log In</h1>
+    <br>
+    {{ form.hidden_tag() }}
+    {{ form.username.label.text }}
+    {{ form.username(class="form-control mb-3 mt-2", placeholder=form.username.label.text) }}
+    {{ form.password.label.text }}
+    {{ form.password(class="form-control mb-3 mt-2", placeholder=form.password.label.text) }}
+    <br>
+    {{ form.submit(class="btn btn-primary", style="margin-top: 5px; background-color: #5F4B66;") }}
+</form>
+</div>
+
+{% endblock %}
