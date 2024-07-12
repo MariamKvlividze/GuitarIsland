@@ -5,13 +5,7 @@ import os
 from models import Product, Offer, User, ProductCategory
 from werkzeug.security import generate_password_hash, check_password_hash
 
-def get_cart_items():
- return session.get('cart', []) 
-    
-@app.route("/")
-def home():
-    cart_items = len(get_cart_items())
-    return render_template("home.html", products = Product.query.all(), offers = Offer.query.all(), cart_items=cart_items)
+
 
 @app.route("/products/<int:category_id>")
 @app.route("/products")
