@@ -9,16 +9,31 @@
     </a>
       <ul class="nav justify-content-end">
           {% if current_user.is_authenticated %}
-          <li class="nav-item" >
-            <a class="nav-link" href="/logout" style="color: black; margin-top: 10px; font-family:Verdana, Geneva, Tahoma, sans-serif">Log Out</a>
-           </li>
-          <div class="btn-group">
+         <div class="btn-group">
             <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" style="margin-top: 5px; color: black; border-color: #F8F9FA; background-color: #F8F9FA;">
               <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" width="40" height="40" class="logo" alt="" style="padding-bottom: 0px; margin-bottom: 0px;">
           </button>
           <ul class="dropdown-menu dropdown-menu-lg-end" style="border-width: 1.5px; border-color: black;  background-color: #F8F9FA;">
             <li style=" margin-left: 15px; margin-right: 20px; font-size: 18px; color:  black;">@{{ current_user.username }}</li>
+           <li class="nav-item" >
+            <a class="nav-link" href="/logout" style="color: black; margin-top: 10px; font-family:Verdana, Geneva, Tahoma, sans-serif">Log Out</a>
+           </li>
           </ul>
+
+              <ul class="navbar-nav" style="margin-top:10px;">
+                  <li class="nav-item">
+                      <a class="nav-link" href="/cart">
+                          <span class="badge bg-secondary">{{ cart_items }}</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+                               class="bi bi-cart" viewBox="0 0 16 16">
+                              <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5
+                              8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313
+                              7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1
+                              0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                          </svg>
+                      </a>
+                  </li>
+              </ul>
           {% else %}
           <li class="nav-item" >
             <a class="nav-link" href="/login" style="color: black; font-family:Verdana, Geneva, Tahoma, sans-serif">Log In</a>
