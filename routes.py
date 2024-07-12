@@ -1,13 +1,17 @@
-from flask import render_template, redirect
+from flask import render_template, redirect, session
 from extensions import app, db, login_manager, login_user, current_user, logout_user
 from forms import AddProduct, LogIn, Register, AddOffer
 import os
 from models import Product, Offer, User, ProductCategory
 from werkzeug.security import generate_password_hash, check_password_hash
 
+def get_cart_items():
+ return session.get('cart', []) 
+    
 @app.route("/")
 def home():
-    return render_template("home.html", products = Product.query.all(), offers = Offer.query.all())
+    cart_items = len(get_cart_items())
+    return render_template("home.html", products = Product.query.all(), offers = Offer.query.all(), cart_items=cart_items)
 
 @app.route("/products/<int:category_id>")
 @app.route("/products")
@@ -187,6 +191,31 @@ def search(product_name):
 
     return render_template("search_results.html", products=products)
 
+@app.route("/cart")
+def cart():
+ cart_product_ids = get_cart_items()
+ length = len(cart_product_ids)
+ if cart_product_ids:
+     products = Product.query.filter(Product.id.in_(cart_product_ids)).all()
+ else:
+     products = []
+ return render_template('cart.html', products=products, cart_items=length)
+
+@app.route('/add_to_cart/<int:item_id>', methods=['GET', 'POST'])
+def add_to_cart(item_id):
+ cart = session.get('cart', [])
+ cart.append(item_id)
+ session['cart'] = cart
+ return redirect("/")
+
+@app.route('/remove_from_cart/<int:item_id>')
+def remove_from_cart(item_id):
+ cart = session.get('cart', [])
+ if item_id in cart:
+     cart.remove(item_id)
+     session['cart'] = cart
+ return redirect("/cart")
+    
 @app.route("/success")
 def success():
     return render_template("success.html")
