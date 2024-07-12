@@ -10,7 +10,8 @@
     <div class="card-body">
                         <h5 class="card-title">{{ product.name }}</h5>
                         <p class="card-text">{{ product.text }}</p>
-                        <h5 class="card-text">{{ product.price }}</h5> btn-primary mb-2">Shop Now</a>
+                        <h5 class="card-text">{{ product.price }}</h5>
+     <a href="/product/{{ product.id }}" class="btn btn-primary mb-2" style="margin-top: 5px; background-color: #5F4B66;">Shop Now</a>
      <a href="/remove_from_cart/{{ product.id }}" class="btn btn-danger mb-2">Remove From Cart</a>
     </div>
    </div>
